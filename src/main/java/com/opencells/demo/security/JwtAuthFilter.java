@@ -32,6 +32,8 @@ public class JwtAuthFilter extends OncePerRequestFilter {
 
         String authHeader = request.getHeader("Authorization");
 
+        System.out.println("AUTH HEADER RECIBIDO: " + authHeader);
+
         if (authHeader == null || !authHeader.startsWith("Bearer ")) {
             filterChain.doFilter(request, response);
             return;
@@ -50,11 +52,13 @@ public class JwtAuthFilter extends OncePerRequestFilter {
                         new WebAuthenticationDetailsSource().buildDetails(request)
                 );
                 SecurityContextHolder.getContext().setAuthentication(authToken);
+
+                System.out.println("TOKEN VÁLIDO PARA: " + email);
+            } else {
+                System.out.println("TOKEN NO VÁLIDO PERO SIN EXCEPCIÓN. Email extraído: " + email);
             }
         } catch (Exception e) {
-            // Token inválido o expirado: seguimos sin autenticar,
-            // Spring Security se encargará de rechazar la petición
-            // más adelante si la ruta lo requiere.
+            System.out.println("ERROR AL VALIDAR TOKEN: " + e.getClass().getName() + " - " + e.getMessage());
         }
 
         filterChain.doFilter(request, response);
