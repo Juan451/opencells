@@ -1,7 +1,7 @@
 package com.opencells.demo.controller;
 
 import com.opencells.demo.model.FishingGear;
-import com.opencells.demo.FishingGearRepository;
+import com.opencells.demo.repository.FishingGearRepository;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;

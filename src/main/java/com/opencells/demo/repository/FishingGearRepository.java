@@ -1,4 +1,4 @@
-package com.opencells.demo;
+package com.opencells.demo.repository;
 
 import com.opencells.demo.model.FishingGear;
 import org.springframework.data.mongodb.repository.MongoRepository;
